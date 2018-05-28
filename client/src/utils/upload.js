@@ -16,3 +16,13 @@ export const readUploadedFileAsDataURL = inputFile =>
     }
     temporaryFileReader.readAsDataURL(inputFile)
   })
+
+export const initFormData = data => {
+  const { title, desc, imageFile } = data
+  const formData = new FormData()
+  formData.append('title', title)
+  formData.append('desc', desc)
+  formData.append('imageFile', imageFile)
+
+  return formData
+}
