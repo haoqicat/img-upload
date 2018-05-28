@@ -10,7 +10,7 @@ const propTypes = {
 class Home extends Component {
   render () {
     const { posts } = this.props
-    const postList = posts.map(t => <Course key={t.id} post={t} />)
+    const postList = posts.map(t => <Course key={t._id} post={t} />)
     return <Wrap>{postList}</Wrap>
   }
 }

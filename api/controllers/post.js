@@ -19,7 +19,7 @@ exports.new = async (req, res) => {
 
 exports.all = async (req, res) => {
   try {
-    const posts = await Post.find({}, `_id title desc`)
+    const posts = await Post.find({}, `_id title desc poster`)
     res.json(posts)
   } catch (err) {
     console.log(err)
