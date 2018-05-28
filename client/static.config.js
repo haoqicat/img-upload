@@ -12,6 +12,10 @@ export default {
         component: 'src/containers/Home',
       },
       {
+        path: '/post/edit',
+        component: 'src/containers/PostEdit',
+      },
+      {
         path: '/post/new',
         component: 'src/containers/PostNew',
       },

@@ -6,11 +6,12 @@ import { readUploadedFileAsDataURL } from '../utils/upload'
 
 const propTypes = {
   setImageFile: PropTypes.func.isRequired,
+  posterUrl: PropTypes.string.isRequired,
 }
 
 class PosterUpload extends Component {
   state = {
-    image: '',
+    image: this.props.posterUrl,
   }
 
   handleChange = async e => {

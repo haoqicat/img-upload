@@ -10,6 +10,21 @@ export const loadPosts = () => async dispatch => {
   dispatch({ type: types.FETCH_POSTS_SUCCESS, posts })
 }
 
+const updatePost = async (data, dispatch) => {
+  const formData = initFormData(data)
+  formData.append('id', data.id)
+  try {
+    const res = await axios.put(POST_URL, formData)
+    dispatch({ type: types.UPADTE_POST_SUCCESS, post: res.data })
+    history.push('/')
+  } catch (err) {
+    console.log(err)
+    if (err.response) {
+      console.log(err.response.data.msg)
+    }
+  }
+}
+
 const newPost = async (data, dispatch) => {
   const formData = initFormData(data)
   try {
@@ -23,8 +38,18 @@ const newPost = async (data, dispatch) => {
 
 export const submitForm = data => (dispatch, getState) => {
   const { imageFile } = getState().post
-  console.log('imageFile', imageFile)
-  newPost({ ...data, imageFile }, dispatch)
+  const isEdit = !!getState().post.editId
+  const formData = imageFile ? { ...data, imageFile } : data
+  if (isEdit) {
+    updatePost({ ...formData, id: getState().post.editId }, dispatch)
+  } else {
+    newPost(formData, dispatch)
+  }
+}
+
+export const editPost = id => dispatch => {
+  dispatch({ type: types.SET_EDIT_ID, id })
+  history.push('/post/edit')
 }
 
 export const setImageFile = imageFile => dispatch => {

@@ -7,10 +7,12 @@ import Upload from '../containers/PosterUpload'
 
 const propTypes = {
   submitForm: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool,
+  post: PropTypes.object,
 }
 
 class Form extends React.Component {
-  state = {
+  state = this.props.post || {
     title: '',
     body: '',
   }
@@ -31,6 +33,7 @@ class Form extends React.Component {
 
   render () {
     const { title, desc } = this.state
+    const { isEdit } = this.props
     return (
       <Wrap>
         <StyledTextField
@@ -53,7 +56,7 @@ class Form extends React.Component {
           margin="normal"
         />
         <Button onClick={this.handleClick} variant="raised" color="secondary">
-          新建课程
+          {isEdit ? '更新课程' : '新建课程'}
         </Button>
         <Upload />
       </Wrap>
