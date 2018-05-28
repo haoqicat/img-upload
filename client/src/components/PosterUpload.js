@@ -3,13 +3,32 @@ import styled from 'styled-components'
 import Add from './Add'
 
 class PosterUpload extends Component {
+  state = {
+    image: '',
+  }
+
+  handleChange = e => {
+    const file = e.target.files[0]
+
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = evt => {
+      console.log('onload', evt.target.result)
+      this.setState({
+        image: evt.target.result,
+      })
+    }
+  }
+
   render () {
+    const { image } = this.state
+
     return (
-      <Wrap>
-        <Label htmlFor="imageUploadBtn">
+      <Wrap image={image}>
+        <Label image={image} htmlFor="imageUploadBtn">
           <Add />
         </Label>
-        <Input type="file" id="imageUploadBtn" />
+        <Input onChange={this.handleChange} type="file" id="imageUploadBtn" />
       </Wrap>
     )
   }
@@ -23,10 +42,14 @@ const Wrap = styled.div`
   border: 1px solid #ddd;
   height: 180px;
   background-color: #f8f8f8;
+  background-image: url(${props => props.image});
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 `
 
 const Label = styled.label`
-  display: block;
+  display: ${props => (props.image ? 'none' : 'block')};
   padding: 80px;
   cursor: pointer;
   svg {
