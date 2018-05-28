@@ -6,6 +6,9 @@ app.use(cors())
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 
+const path = require('path')
+app.use(express.static(path.join(__dirname, 'public')))
+
 // mongoose START
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost:27017/img-upload')
