@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Add from './Add'
+import { readUploadedFileAsDataURL } from '../utils/upload'
 
 class PosterUpload extends Component {
   state = {
     image: '',
   }
 
-  handleChange = e => {
+  handleChange = async e => {
     const file = e.target.files[0]
-
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = evt => {
-      console.log('onload', evt.target.result)
+    try {
+      const image = await readUploadedFileAsDataURL(file)
       this.setState({
-        image: evt.target.result,
+        image,
       })
+    } catch (err) {
+      alert(err)
     }
   }
 
