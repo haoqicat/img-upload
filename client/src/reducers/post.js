@@ -12,6 +12,16 @@ const all = (state = [], action) => {
   }
 }
 
+const imageFile = (state = '', action) => {
+  switch (action.type) {
+    case types.SET_IMAGE_FILE:
+      return action.imageFile
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   all,
+  imageFile,
 })

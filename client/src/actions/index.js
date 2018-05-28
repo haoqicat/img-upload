@@ -19,6 +19,12 @@ const newPost = async (data, dispatch) => {
   }
 }
 
-export const submitForm = data => dispatch => {
+export const submitForm = data => (dispatch, getState) => {
+  const { imageFile } = getState().post
+  console.log('imageFile', imageFile)
   newPost(data, dispatch)
+}
+
+export const setImageFile = imageFile => dispatch => {
+  dispatch({ type: types.SET_IMAGE_FILE, imageFile })
 }

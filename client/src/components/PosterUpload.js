@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import Add from './Add'
 import { readUploadedFileAsDataURL } from '../utils/upload'
+
+const propTypes = {
+  setImageFile: PropTypes.func.isRequired,
+}
 
 class PosterUpload extends Component {
   state = {
@@ -15,6 +20,7 @@ class PosterUpload extends Component {
       this.setState({
         image,
       })
+      this.props.setImageFile(file)
     } catch (err) {
       alert(err)
     }
@@ -36,6 +42,8 @@ class PosterUpload extends Component {
     )
   }
 }
+
+PosterUpload.propTypes = propTypes
 
 export default PosterUpload
 
