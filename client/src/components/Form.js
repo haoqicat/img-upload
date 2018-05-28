@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import PropTypes from 'prop-types'
+import Upload from '../containers/PosterUpload'
 
 const propTypes = {
   submitForm: PropTypes.func.isRequired,
@@ -54,6 +55,7 @@ class Form extends React.Component {
         <Button onClick={this.handleClick} variant="raised" color="secondary">
           新建课程
         </Button>
+        <Upload />
       </Wrap>
     )
   }
