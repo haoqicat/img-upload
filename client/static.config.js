@@ -12,8 +12,8 @@ export default {
         component: 'src/containers/Home',
       },
       {
-        path: '/about',
-        component: 'src/containers/About',
+        path: '/post/new',
+        component: 'src/containers/PostNew',
       },
       {
         path: '/blog',

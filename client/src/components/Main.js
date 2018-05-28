@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Routes from 'react-static-routes'
 import { Router } from 'react-static'
 import PropTypes from 'prop-types'
+import history from '../utils/router'
 import Header from './Header'
 import '../app.css'
 
@@ -16,7 +17,7 @@ class Main extends Component {
 
   render () {
     return (
-      <Router>
+      <Router history={history}>
         <div>
           <Header />
           <Routes />
