@@ -28,6 +28,9 @@ class PosterUpload extends Component {
         <Label image={image} htmlFor="imageUploadBtn">
           <Add />
         </Label>
+        <LabelAdd image={image} htmlFor="imageUploadBtn">
+          <Add />
+        </LabelAdd>
         <Input onChange={this.handleChange} type="file" id="imageUploadBtn" />
       </Wrap>
     )
@@ -46,6 +49,7 @@ const Wrap = styled.div`
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  position: relative;
 `
 
 const Label = styled.label`
@@ -60,4 +64,19 @@ const Label = styled.label`
 
 const Input = styled.input`
   display: none;
+`
+
+const LabelAdd = styled.label`
+  display: ${props => (props.image ? 'block' : 'none')};
+  background-color: #ddd;
+  height: 24px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  svg {
+    fill: white;
+    width: 24px;
+    height: 24px;
+  }
 `
