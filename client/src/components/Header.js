@@ -24,8 +24,8 @@ const Wrap = styled.div`
   }
   .inner {
     display: flex;
-    padding: 10px;
-    width: 400px;
+    padding: 15px;
+    width: 460px;
     margin: 0 auto;
     a {
       margin-right: 15px;

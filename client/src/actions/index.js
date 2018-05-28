@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as types from '../constants/ActionTypes'
-import { ALL_POSTS_URL } from '../constants/ApiConstants'
+import { ALL_POSTS_URL, POST_URL } from '../constants/ApiConstants'
 import history from '../utils/router'
 
 export const loadPosts = () => async dispatch => {
@@ -9,7 +9,16 @@ export const loadPosts = () => async dispatch => {
   dispatch({ type: types.FETCH_POSTS_SUCCESS, posts })
 }
 
-export const submitForm = data => () => {
-  console.log(data)
-  history.push('/')
+const newPost = async (data, dispatch) => {
+  try {
+    const res = await axios.post(POST_URL, data)
+    dispatch({ type: types.SUBMIT_POST_SUCCESS, post: res.data })
+    history.push('/')
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export const submitForm = data => dispatch => {
+  newPost(data, dispatch)
 }
